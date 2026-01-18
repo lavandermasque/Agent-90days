@@ -1,3 +1,4 @@
+"""
 from utils import safe_int
 
 def main():
@@ -10,3 +11,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+"""
+from fastapi import FastAPI
+from app.routers import demo
+
+app = FastAPI()
+app.include_router(demo.router)
