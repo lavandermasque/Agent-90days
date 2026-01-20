@@ -1,6 +1,6 @@
 # demo.py = 一组接口
 
-from fastapi import APIRouter
+from fastapi import APIRouter, UploadFile, File
 router = APIRouter()
 
 # 当通过浏览器或程序访问 /ping 这个网址，并且用的是 GET 方法，运行ping()
@@ -18,3 +18,9 @@ def echo(msg: str):
 def calc_sum(data: dict):
     return {"result": data["a"] + data["b"]}
 
+@router.post("/upload_file")
+def upload_file(file: UploadFile = File(...)):
+    return {
+        "filename": file.filename,
+        "content_type": file.content_type
+    }
